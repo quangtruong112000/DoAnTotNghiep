@@ -1,0 +1,132 @@
+﻿@model IEnumerable<WebBanThuoc.Models.Category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    User user = (User)Session["Login"];
+}
+@using WebBanThuoc.Models.Login
+
+
+    @section scripts{
+        <script>
+
+            $(document).ready(function () {
+
+                $("#btnAdd").click(function () {
+                    $("#addName").val("");
+
+                    $("#idCategory").val("")
+                    $('#addRowModal').modal("show");
+
+                });
+                $(document).on('click', 'button[name=Edit]', function () {
+
+                    $('#addRowModal').modal("show");
+
+                    var id = $(this).closest('tr').find("td:eq(0)").text();
+                    var Name = $(this).closest('tr').find("td:eq(1)").text();
+                    $("#addName").val(Name);
+                    $("#idCategory").val(id)
+
+                });
+            });
+        </script>
+    }
+
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex align-items-center">
+                    <h4 class="card-title">Danh Mục</h4>
+                    @if (user != null && user.position == true)
+                    {
+                        <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#addRowModal">
+                            <i class="fa fa-plus"></i>
+                            Thêm Mới
+                        </button>
+                    }
+
+                </div>
+            </div>
+            <div class="card-body">
+                <!-- Modal -->
+                <div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header no-bd">
+                                <h5 class="modal-title">
+                                    <span class="fw-mediumbold">
+                                        Thông Tin Danh Mục
+                                    </span>
+                                </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form action="/Service/Create" method="post">
+                                <div class="modal-body">
+                                    <p class="small">Bạn vui lòng nhập đầy đủ thông tin</p>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="form-group form-group-default">
+                                                <label>Tên Danh Mục</label>
+                                                <input id="addName" name="Name" type="text" class="form-control" placeholder="Vui Lòng Nhập Thông Tin" required>
+                                                <input id="idCategory" hidden name="idCategory" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer no-bd">
+                                    <button type="submit" id="addRowButton" class="btn btn-primary">Lưu</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table id="add-row" class="display table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Tên Danh Mục</th>
+                                @if (user != null && user.position == true)
+                                {
+                                    <th style="width: 10%">Thao tác</th>
+                                }
+                             
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>@item.id</td>
+                                <td>@item.name</td>
+                                @if (user != null && user.position == true)
+                                {
+                                    <td>
+                                        <div class="form-button-action">
+                                            <button type="button" name="Edit" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Chỉnh sửa">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                            <a href="/Service/Delete/@item.id" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Xóa">
+                                                <i class="fa fa-times"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                }
+
+                            </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,97 @@
+﻿@model  List<Product>
+@{ ViewBag.Title = "Index";
+    WebBanThuocDB db = new WebBanThuocDB(); }
+@using AppBanThuoc.Models;
+<div class="home-banner">
+    <div class="home-banner-content">
+        <div class="title">
+            <h2>
+                TMALL
+                <br />
+                MUA HÀNG TRỰC TUYẾN
+            </h2>
+        </div>
+        <div class="description">
+            <p>Hỏi đáp trực tuyến</p>
+        </div>
+        <div class="btn-meetdoctor">
+            <a href="/Forum/Index">TRÒ CHUYỆN<i class="fas fa-angle-right"></i></i></i></a>
+        </div>
+    </div>
+</div>
+<div class="home-product-hot">
+    <div class="home-product-hot-container">
+        <div class="home-product-hot-title">
+            Sản phẩm nổi bật
+        </div>
+        <div class="home-product-hot-list">
+            @foreach (var item in db.Products.Where(x => x.delete != true).OrderByDescending(x => x.id).Take(10))
+            {
+<div class="home-product-hot-item">
+    <div class="home-product-hot-img" style="height:250px">
+        <a href="/Comestic/Detail/@item.id">
+            <img src="@item.Photos.FirstOrDefault().url" alt="">
+        </a>
+        <a href="/Comestic/AddCart/@item.id" class="home-product-hot-add-to-cart btn">Thêm vào giỏ hàng</a>
+    </div>
+    <div class="home-product-list">
+        <div class="home-product-hot-name">
+            @item.name
+        </div>
+        <div class="home-product-item-footer">
+            <div class="home-product-hot-brand">
+                @item.Category.name
+            </div>
+            <div class="home-product-hot-price-list">
+                <span class="home-product-hot-price-discount">
+                    @item.price.Value.ToString("N0") VNĐ
+                </span>
+            </div>
+        </div>
+    </div>
+
+</div>      }
+
+        </div>
+    </div>
+</div>
+<div class="home-product-hot">
+    <div class="home-product-hot-container">
+        <div class="home-product-hot-title">
+            Sản phẩm giảm giá
+        </div>
+        <div class="home-product-hot-list">
+            @foreach (var item in Model)
+            {
+<div class="home-product-hot-item" >
+    <div class="home-product-hot-img">
+        <a href="/Comestic/Detail/@item.id">
+            <img src="@item.Photos.FirstOrDefault().url" alt="">
+        </a>
+        <a href="/Comestic/AddCart/@item.id" class="home-product-hot-add-to-cart btn">Thêm vào giỏ hàng</a>
+    </div>
+    <div class="home-product-list">
+        <div class="home-product-hot-name">
+            @item.name
+        </div>
+        <div class="home-product-item-footer">
+            <div class="home-product-hot-brand">
+                @item.Category.name
+            </div>
+            <div class="home-product-hot-price-list">
+                <span class="home-product-hot-price-discount">
+                    @item.price.Value.ToString("N0") VNĐ
+                </span>
+                <span class="home-product-hot-price">
+                    @item.discount %
+                </span>
+            </div>
+        </div>
+    </div>
+
+</div>      }
+
+        </div>
+    </div>
+</div>
+

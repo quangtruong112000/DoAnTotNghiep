@@ -1,0 +1,16 @@
+.about {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    background-color: #fff;
+}
+.about-item {
+    background-color: antiquewhite;
+}
+.begining{
+    text-align: center;
+    margin-top: 50%;
+    padding: 0 50px;
+}
+.good-luck {
+    text-align: center;
+}

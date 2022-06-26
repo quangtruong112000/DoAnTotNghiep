@@ -1,0 +1,142 @@
+﻿@model PagedList.IPagedList<Product>
+@{ ViewBag.Title = "Index";
+    List<Brand> Brand = (List<Brand>)ViewBag.Brand;
+    List<Category> categories = (List<Category>)ViewBag.catergory; }
+@using PagedList.Mvc;
+@using AppBanThuoc.Models;
+
+<div class="services">
+    <div class="container">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img style="height: 500px" src="https://images.unsplash.com/photo-1494424698959-eeb116f0daac?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="slide1" />
+                </div>
+                <div class="swiper-slide">
+                    <img style="height: 500px" src="https://images.unsplash.com/photo-1483181957632-8bda974cbc91?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="slide1" />
+                </div>
+                <div class="swiper-slide">
+                    <img style="height: 500px" src="https://images.unsplash.com/photo-1584953528653-503bb1c9dbf8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="slide1" />
+                </div>
+            </div>
+        </div>
+        <div class="header-slick-slider">
+            @foreach (var item in Brand)
+            {
+<div>
+    <img class="header-slick-slider-item" src="@item.url_image" alt="slick-slider1" />
+</div>      }
+
+        </div>
+    </div>
+</div>
+<div class="services-product">
+    <div class="container">
+        <div class="services-product-title">
+            <h2>TẤT CẢ SẢN PHẨM</h2>
+        </div>
+        <div class="services-product-body">
+            <div class="services-product-body-left">
+                <p>Danh Mục Phù Hợp</p>
+                <ul class="service-list">
+                    @foreach (var item in categories)
+                    {
+                        if (item.delete != true)
+                        {
+        <li class="service-list-item">
+            <a class="" href="/Comestic/Index/@item.id">
+                @item.name
+            </a>
+        </li>
+}
+}
+                </ul>
+            </div>
+            <div class="services-product-body-right">
+                @using (Html.BeginForm("Index", "Comestic", FormMethod.Get))
+                {
+    <div class="services-search">
+        <div class="sort">
+            <lable class="sort-services">
+                Lọc:
+            </lable>
+            <select class="form-select" name="sortOrder">
+                @{ if (((string)ViewBag.sortOrder).Equals("desc"))
+                    {
+    <option value="asc">Tăng dần</option>
+                        <option value="desc" selected>Giảm dần</option>
+ }
+                    else
+                    {
+    <option value="asc" selected="selected">Tăng dần</option>
+                        <option value="desc">Giảm dần</option>
+ } }
+            </select>
+        </div>
+        <div class="search-input">
+            <input type="text" name="SearchString" class="form-control search-input-area" value="@((string)ViewBag.searchValue)" id="" placeholder="Tìm kiếm dịch vụ">
+            <input type="submit" class="search-btn" name="Reset" value="Tìm kiếm" />
+            <input type="hidden" name="objectPhoto" id="objectPhoto" value="@((string)ViewBag.objectPhoto)" />
+
+            <div class="search-input-image">
+                <label for="upload-photo" class="search-btn-image">
+                    Upload
+                    <input type="file" id="upload-photo" name="upload-photo" accept="image/*">
+                </label>
+            </div>
+
+            @Html.Hidden("page", (object)ViewBag.page)
+            @Html.Hidden("id", (object)ViewBag.idCategory)
+            @Html.Hidden("size", (object)ViewBag.pageSize)
+        </div>
+    </div>}
+
+                <div class="list-item">
+                    @foreach (var item in Model)
+                    {<div class="item-detail">
+                            <div class="img-card">
+                                <a href="/Comestic/Detail/@item.id">
+                                    <img src="@(item.Photos.FirstOrDefault() != null ? @item.Photos.FirstOrDefault().url : "https://media.vietskin.vn/media/59b1f407d0c5c2f09095eabeaa438869peel-da-tao-song.jpg")"
+                                         alt="">
+                                </a>
+                                <a href="/Comestic/AddCart/@item.id" class="add-to-cart btn">Thêm vào giỏ hàng</a>
+                            </div>
+                            <div class="item-detail-info">
+                                <div class="item-name">
+                                    @item.name
+                                </div>
+                                <div class="service-price">
+
+                                    @{ if (item.discount != null && item.discount > 0)
+                                        {<span class="service-item-price-origin">
+                                                @(item.price) VND
+                                            </span>
+                                                                <span class="service-item-price-discount">
+                                                                    Giảm @item.discount %
+                                                                </span> }
+                                                            else
+                                                            {
+                                            <span class="">
+                                                @(item.price.Value.ToString("N0")) VND
+                                            </span> } }
+
+                                </div>
+                            </div>
+                        </div>}
+                </div>
+                <div class="d-flex paging-service">
+                    @*<div class="paging-service-1">
+                            Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+                        </div>*@
+                    <div class="ml-5">
+                        @Html.PagedListPager(Model, page => Url.Action("Index/" + ViewBag.url,
+                                                  new { page }))
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

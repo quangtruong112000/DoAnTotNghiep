@@ -1,0 +1,233 @@
+﻿
+@{
+    ViewBag.Title = "LayoutShare";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <link rel="stylesheet"
+          href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <link href="~/Content/css/home.css" rel="stylesheet" />
+
+    <link href="~/Content/css/services.css" rel="stylesheet" />
+
+    <link href="~/Content/css/comestic.css" rel="stylesheet" />
+
+    <link href="~/Content/css/layout.css" rel="stylesheet" />
+
+    <link href="~/Content/css/doctor.css" rel="stylesheet" />
+
+    <link href="~/Content/css/doctor-intro.css" rel="stylesheet" />
+
+    <link href="~/Content/css/cart.css" rel="stylesheet" />
+
+    <link href="~/Content/css/cosmetics-detail.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="header-container">
+            <div class="header-left">
+                <a href="/CusHome/Index" class="header-logo-content">
+                    <img src="https://cdn-icons-png.flaticon.com/512/7620/7620585.png" style="height:30px" alt="logo-header">
+                    <div class="header-branch">TMall</div>
+                </a>
+            </div>
+            <div class="header-menu">
+                <ul class="list-item">
+                    <li class="menu-item"><a href="/CusHome/Index">TRANG CHỦ</a></li>
+                   @* <li class="menu-item"><a href="/Service/Index">DỊCH VỤ</a> </li>*@
+                    <li class="menu-item"><a href="/Comestic/Index">SẢN PHẨM</a> </li>
+                    <li class="menu-item"><a href="/Doctor/Index">ABOUT US</a></li>
+                   @* <li class="menu-item">PHIÊN KHÁM CỦA TÔI</li>*@
+                    <li class="menu-item"><a href="/Forum/Index">DIỄN ĐÀN</a></li>
+                </ul>
+            </div>
+            @{Html.RenderAction("UseInfor", "Home");}
+
+        </div>
+    </div>
+    <!-- Button trigger modal -->
+    @{Html.RenderAction("Index", "Account");};
+    <div class="modal fade" id="ModalCancel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form action="/Comestic/DetailOrder" method="post">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Lý do hủy đơn hàng</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-check">
+                            <input id="idorder" hidden name="idorder" />
+                            <input class="form-check-input" value="1" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                Tôi muốn thay đội địa chỉ giao hàng
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" value="2" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                Thủ tục thanh toán quá rắc rối
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" value="3" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+                            <label class="form-check-label" for="flexRadioDefault3">
+                                Tìm thấy giá rẽ hơn ở chỗ khác
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" value="4" type="radio" name="flexRadioDefault" id="flexRadioDefault4" checked>
+                            <label class="form-check-label" for="flexRadioDefault4">
+                                Đổi ý không mua nữa
+                            </label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary">Hủy</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <div>
+
+        @{Html.RenderAction("Cart", "Comestic");};
+        @RenderBody()
+    </div>
+    <div class="footer-main">
+        <div class="container">
+            <div class="footer-main-branch">
+                <a href="/CusHome/Index" class="footer-main-branch-logo">
+                    <img src="https://cdn-icons-png.flaticon.com/512/7620/7620585.png" style="height:30px" alt="logo-header">
+                    <div class="footer-branch">TMall</div>
+                </a>
+            </div>
+            <div class="footer-main-list">
+                <ul class="footer-main-list-item">
+                    <li class="item ">
+                        <a href="" class="footer-title">Dịch vụ</a>
+                    </li>
+                    <li class="item">
+                        <a href="">Spa</a>
+                    </li>
+                    <li class="item">
+                        <a href="">Chuẩn đoán</a>
+                    </li>
+                    <li class="item">
+                        <a href="">Khám bệnh</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-main-list">
+                <ul class="footer-main-list-item">
+                    <li class="item">
+                        <a href="" class="footer-title">Cửa hàng</a>
+                    </li>
+                    <li class="item">
+                        <a href="">Dược phẩm</a>
+                    </li>
+                    <li class="item">
+                        <a href="">Mỹ phẩm</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-main-list">
+                <ul class="footer-main-list-item">
+                    <li class="item">
+                        <a href="" class="footer-title">Hồ sơ cá nhân</a>
+                    </li>
+                    <li class="item">
+                        <a href="">Lịch sử phiên khám</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <script>
+        var swiper = new Swiper(".mySwiper", {});
+    </script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <script src="~/Content/Scripts/cosmetics-detail.js"></script>
+    <script src="~/Content/Scripts/cosmetics.js"></script>
+    <script src="~/Content/Scripts/product-hot.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    @RenderSection("scripts", required: false)
+    <!-- Messenger Plugin chat Code -->
+    <div id="fb-root"></div>
+    <!-- Your Plugin chat code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+    <div class="zalo-chat-widget"
+         data-oaid="3621542026823684287"
+         data-welcome-message="Rất vui khi được hỗ trợ bạn!"
+         data-autopopup="0"
+         data-width=""
+         data-height="">
+    </div>
+    <style>
+        .zalo-chat-widget {
+            margin-bottom: 50px;
+        }
+    </style>
+    <style>
+        .zalo-chat-widget {
+            margin-bottom: 50px;
+            right: 26px !important;
+        }
+    </style>
+    <script>
+        var chatbox = document.getElementById('fb-customer-chat');
+        chatbox.setAttribute("page_id", "109477347973637");
+        chatbox.setAttribute("attribution", "biz_inbox");
+        window.fbAsyncInit = function () {
+            FB.init({
+                xfbml: true,
+                version: 'v11.0'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+</body>
+
+</html>
