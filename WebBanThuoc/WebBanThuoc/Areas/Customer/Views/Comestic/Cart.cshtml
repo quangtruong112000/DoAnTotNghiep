@@ -1,0 +1,61 @@
+﻿@model List<Cart> 
+@using WebBanThuoc.Models
+<div class="services">
+    <div class="container">
+        <div class="services-cart">
+            <div class="cart-btn">
+                <img src="https://online.vietskin.vn/image/slider-cosmetics/cart_home.png" type="button" data-bs-toggle="offcanvas"
+                     data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></img>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
+                     aria-labelledby="offcanvasRightLabel">
+                    <div class="offcanvas-header">
+                        <h5 id="offcanvasRightLabel">GIỎ HÀNG CỦA BẠN</h5>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <div class="cart1">
+                            <div class="list-cart">
+                                @foreach (var item in Model)
+                                {
+                                    <div class="cart-detail">
+                                        <img src="@item.Product.Photos.FirstOrDefault().url" alt="" width="100" >
+                                        <div class="cart-detail-name">
+                                           @item.Product.name
+                                        </div>
+                                        <div class="cart-detail-quantity" style="">@item.quantity.ToString() @item.Product.unit  </div>
+                                        <div class="cart-detail-price" style="width:40%" >@(item.intomoney.Value.ToString("N0"))vnđ</div>
+                                        <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <img src="https://online.vietskin.vn/image/slider-cosmetics/history_order.png" alt="history_order">
+            </div>
+            <div>
+                <img src="https://online.vietskin.vn/image/slider-cosmetics/message.png" alt="mess">
+            </div>
+        </div>
+        <div class="services-title">
+            <span>MỚI & HOT</span>
+        </div>
+        <div class="services-banner">
+            <div class="item1">
+                <img src="https://online.vietskin.vn/image/service/DV-BANNER-01.png" alt="banner1">
+            </div>
+            <div class="item2">
+                <img src="https://online.vietskin.vn/image/service/dich-vu-triet-long-vinh-vien.png" alt="banner2">
+            </div>
+            <div class="item3">
+                <img src="https://online.vietskin.vn/image/service/image3-16.png" alt="banner3">
+            </div>
+            <div class="item4">
+                <img src="https://online.vietskin.vn/image/service/dap-mat-na-tot.png" alt="banner4">
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,165 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+    outline: none;
+}
+
+.container {
+    max-width: 1170px;
+    margin: 0 auto;
+}
+
+.header {
+    z-index: 99;
+    font-family: "Roboto", sans-serif;
+    position: fixed;
+    background-color: #fff;
+    top: 0;
+    width: 100%;
+}
+
+.header-container {
+    max-width: 1170px;
+    margin: 0 auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+    .header-container .header-left .header-logo-content {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        text-decoration: none;
+    }
+
+        .header-container .header-left .header-logo-content img {
+            max-width: 60px;
+            max-height: 60px;
+        }
+
+        .header-container .header-left .header-logo-content .header-branch {
+            color: #0051a5;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+    .header-container .header-menu ul.list-item {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        list-style-type: none;
+    }
+
+        .header-container .header-menu ul.list-item li.menu-item {
+            cursor: pointer;
+            margin-right: 36px;
+            font-size: 15px;
+            color: #1c87f7;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+    .header-container .header-right .header-account {
+        margin-right: 8px;
+        background: white;
+        color: #1c87f7;
+        text-decoration: none;
+        font-size: 16px;
+    }
+
+.home-banner {
+    position: relative;
+    margin-top: 68px;
+    margin-top: 68px;
+    background-image: url("https://online.vietskin.vn/image/banner-home.png");
+    height: 500px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    opacity: 0.9;
+    margin-bottom: 52px;
+}
+
+    .home-banner::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+.home-banner-content {
+    z-index: 10;
+    position: absolute;
+    width: 500px;
+    top: 40%;
+    left: 20%;
+    color: #fff;
+}
+
+
+.footer-main {
+    background: #1c87f7;
+}
+
+    .footer-main .container {
+        padding: 52px 0;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+    }
+
+        .footer-main .container .footer-main-list {
+            color: #fff;
+        }
+
+        .footer-main .container .footer-main-list-title {
+            font-size: 18px;
+            font-weight: 700;
+            padding-left: 4px;
+            margin-bottom: 20px;
+            line-height: 27px;
+        }
+
+        .footer-main .container .footer-main-list ul.footer-main-list-item {
+            list-style-type: none;
+        }
+
+            .footer-main .container .footer-main-list ul.footer-main-list-item > li.item {
+                margin-bottom: 20px;
+            }
+
+                .footer-main .container .footer-main-list ul.footer-main-list-item > li.item a {
+                    color: #fff;
+                    text-decoration: none;
+                    font-size: 14px;
+                    font-weight: 400;
+                }

@@ -1,0 +1,408 @@
+﻿@model Product
+@{
+    ViewBag.Title = "Detail";
+    List<Evaluate> Evaluate = (List<Evaluate>)ViewBag.Evaluate;
+}
+@using AppBanThuoc.Models;
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+
+<div class="cosmetics-detail">
+    <div class="cosmetics-detail-container">
+        <div class="cosmetics-detail-link">
+            <a href="">Home</a>
+            <a href="">/ @Model.Category.name</a>
+            <a href="">/ @Model.name</a>
+        </div>
+        <div class="cosmetic-details-body">
+            <div class="cosmetic-details-imgs">
+
+                <img src="@Model.Photos.FirstOrDefault().url" alt=""
+                     class="img-main">
+                @foreach (var item in Model.Photos)
+                {
+                    <img src="@item.url" alt=""
+                         class="img-extra">
+                }
+
+            </div>
+            <div class="cosmetic-details-info ml-2">
+                <div class="cosmetic-details-name">
+                    @Model.name
+                </div>
+                <div class="cosmetic-details-price">
+                    @Model.price.Value.ToString("N0")
+                </div>
+                <div class="cosmetic-details-desc-top">
+                    @Html.Raw(Model.description)
+                </div>
+                <div class="cosmetic-details-add-to-cart">
+
+                    <button style="border:none;background-color:white" id="minus" class="minus">-</button>
+                    <span id="quantity" class="cosmetic-quantity">1</span>
+                    <button style="border:none;background-color:white" id="plus" class="plus">+</button>
+                    <button id="addCart" href="/Comestic/AddCart/@Model.id?quantity=2" class="add-to-cart">
+                        Thêm vào giỏ hàng
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="cosmetic-details-desc">
+            <div class="cosmetic-details-desc-title">
+                Thông tin chi tiết sản phẩm
+            </div>
+            <div class="cosmetic-details-desc-bottom">
+                @Html.Raw(Model.description)
+            </div>
+        </div>
+        <div class="related-products">
+            <div class="related-products-title">
+                Các sản phẩm liên quan
+            </div>
+            <div class="relative-product-list">
+                @foreach (var item in Model.Category.Products)
+                {
+                    <div class="product-item">
+                        <div class="relative-img">
+                            <img src="@item.Photos.FirstOrDefault().url" alt="">
+                            <div class="relative-add-to-cart">Thêm vào giỏ hàng</div>
+                        </div>
+                        <div class="relative-name">
+                            @item.name
+                        </div>
+                        <div class="relative-brand">
+                            @item.product_brand
+                        </div>
+                        <div class="relative-price">
+                            @item.price.Value.ToString("N0")
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        @*haucode từ*@
+        
+        <div class="card" style=" margin-top:10px">
+            <div class="card-body">
+                <div class="inforevaluate">
+                    <h5>Thông tin đánh giá @Model.name</h5>
+                    <div>
+                        @{
+                            if (Evaluate.Count == 0)
+                            {
+                                <div class="inforevaluate-icon">
+                                    <label>0.0</label>
+                                    <div class="inforevaluate-icon-item">
+                                        <img src="~/Content/icons2.png"  class="inforevaluate-icon-item-img" />
+                                        <img src="~/Content/icons2.png"  class="inforevaluate-icon-item-img" />
+                                        <img src="~/Content/icons2.png"  class="inforevaluate-icon-item-img" />
+                                        <img src="~/Content/icons2.png"  class="inforevaluate-icon-item-img" />
+                                        <img src="~/Content/icons2.png"  class="inforevaluate-icon-item-img" />
+                                    </div>
+                                    <label>0 đánh giá</label>
+
+                                </div>
+
+
+                            }
+                            else
+                            {
+
+
+                                var poit = 0.0;
+                                var poit1 = 0;
+                                var poit2 = 0;
+                                var poit3 = 0;
+                                var poit4 = 0;
+                                var poit5 = 0;
+                                foreach (var i in Evaluate)
+                                {
+                                    poit = Convert.ToInt32(i.point) + poit;
+                                    if (i.point == 1)
+                                    {
+                                        poit1 += 1;
+                                    }
+                                    else if (i.point == 2)
+                                    {
+                                        poit2 += 1;
+                                    }
+                                    else if (i.point == 3)
+                                    {
+                                        poit3 += 1;
+                                    }
+                                    else if (i.point == 4)
+                                    {
+                                        poit4 += 1;
+                                    }
+                                    else if (i.point == 5)
+                                    {
+                                        poit5 += 1;
+                                    }
+
+                                }
+
+                                var percent = poit / Evaluate.Count;
+
+                    <div class="inforevaluate-icon">
+                        <label>@percent</label>
+                        @{
+                            if (percent < 1)
+                            {
+                                <div class="inforevaluate-icon-item">
+                                    <img src="~/Content/icons3.png" class="inforevaluate-icon-item-img"  />
+                                    <img src="~/Content/icons2.png"class="inforevaluate-icon-item-img"  />
+                                    <img src="~/Content/icons2.png" class="inforevaluate-icon-item-img" />
+                                    <img src="~/Content/icons2.png"class="inforevaluate-icon-item-img"  />
+                                    <img src="~/Content/icons2.png"class="inforevaluate-icon-item-img" />
+                                </div>
+                            }
+                            else if (percent == 1)
+                            {
+                                <div class="inforevaluate-icon-item">
+                                    <img src="~/Content/icons1.png" class="inforevaluate-icon-item-img"  />
+                                    <img src="~/Content/icons2.png" class="inforevaluate-icon-item-img"  />
+                                    <img src="~/Content/icons2.png" class="inforevaluate-icon-item-img" />
+                                    <img src="~/Content/icons2.png"  class="inforevaluate-icon-item-img" />
+                                    <img src="~/Content/icons2.png"class="inforevaluate-icon-item-img"  />
+                                </div>
+                            }
+                            else if (percent > 1 && percent < 2)
+                            {
+                                <div class="inforevaluate-icon-item">
+                                    <img src="~/Content/icons1.png"class="inforevaluate-icon-item-img"  />
+                                    <img src="~/Content/icons3.png" class="inforevaluate-icon-item-img"  />
+                                    <img src="~/Content/icons2.png" class="inforevaluate-icon-item-img" />
+                                    <img src="~/Content/icons2.png" class="inforevaluate-icon-item-img" />
+                                    <img src="~/Content/icons2.png" class="inforevaluate-icon-item-img" />
+                                </div>
+                            }
+                            else if (percent == 2)
+                            {
+                                <div class="inforevaluate-icon-item">
+                                    <img src="~/Content/icons1.png" class="inforevaluate-icon-item-img" />
+                                    <img src="~/Content/icons1.png" class="inforevaluate-icon-item-img" />
+                                    <img src="~/Content/icons2.png" class="inforevaluate-icon-item-img" />
+                                    <img src="~/Content/icons2.png" class="inforevaluate-icon-item-img" />
+                                    <img src="~/Content/icons2.png" class="inforevaluate-icon-item-img" />
+                                </div>
+                            }
+                            else if (percent > 2 && percent < 3)
+                            {
+                                <div class="inforevaluate-icon-item">
+                                    <img src="~/Content/icons1.png" class="inforevaluate-icon-item-img" />
+                                    <img src="~/Content/icons1.png" class="inforevaluate-icon-item-img" />
+                                    <img src="~/Content/icons3.png" class="inforevaluate-icon-item-img" />
+                                    <img src="~/Content/icons2.png" class="inforevaluate-icon-item-img" />
+                                    <img src="~/Content/icons2.png" class="inforevaluate-icon-item-img" />
+                                </div>
+                            }
+                            else if (percent == 3)
+                            {
+                                <div class="inforevaluate-icon-item">
+                                    <img src="~/Content/icons1.png" class="inforevaluate-icon-item-img" />
+                                    <img src="~/Content/icons1.png" class="inforevaluate-icon-item-img" />
+                                    <img src="~/Content/icons1.png" class="inforevaluate-icon-item-img" />
+                                    <img src="~/Content/icons2.png" class="inforevaluate-icon-item-img" />
+                                    <img src="~/Content/icons2.png" class="inforevaluate-icon-item-img" />
+                                </div>
+                            }
+                            else if (percent > 3 && percent < 4)
+                            {
+                                <div class="inforevaluate-icon-item">
+                                    <img src="~/Content/icons1.png" class="inforevaluate-icon-item-img" />
+                                    <img src="~/Content/icons1.png" class="inforevaluate-icon-item-img" />
+                                    <img src="~/Content/icons1.png" class="inforevaluate-icon-item-img" />
+                                    <img src="~/Content/icons3.png" class="inforevaluate-icon-item-img" />
+                                    <img src="~/Content/icons2.png" class="inforevaluate-icon-item-img" />
+                                </div>
+                            }
+                            else if (percent == 4)
+                            {
+                                <div class="inforevaluate-icon-item">
+                                    <img src="~/Content/icons1.png" class="inforevaluate-icon-item-img" />
+                                    <img src="~/Content/icons1.png" class="inforevaluate-icon-item-img" />
+                                    <img src="~/Content/icons1.png" class="inforevaluate-icon-item-img" />
+                                    <img src="~/Content/icons1.png" class="inforevaluate-icon-item-img" />
+                                    <img src="~/Content/icons2.png" class="inforevaluate-icon-item-img" />
+                                </div>
+                            }
+                            else if (percent > 4 && percent < 5)
+                            {
+                                <div class="inforevaluate-icon-item">
+                                    <img src="~/Content/icons1.png" class="inforevaluate-icon-item-img" />
+                                    <img src="~/Content/icons1.png" class="inforevaluate-icon-item-img" />
+                                    <img src="~/Content/icons1.png" class="inforevaluate-icon-item-img" />
+                                    <img src="~/Content/icons1.png" class="inforevaluate-icon-item-img" />
+                                    <img src="~/Content/icons3.png" class="inforevaluate-icon-item-img" />
+                                </div>
+                                    }
+                                    else if (percent == 5)
+                                    {
+                                <div class="inforevaluate-icon-item">
+                                    <img src="~/Content/icons1.png" class="inforevaluate-icon-item-img" />
+                                    <img src="~/Content/icons1.png" class="inforevaluate-icon-item-img" />
+                                    <img src="~/Content/icons1.png" class="inforevaluate-icon-item-img" />
+                                    <img src="~/Content/icons1.png" class="inforevaluate-icon-item-img" />
+                                    <img src="~/Content/icons1.png" class="inforevaluate-icon-item-img" />
+                                </div>
+                                    }
+                                    }
+
+
+                                    <label>@Evaluate.Count đánh giá</label>
+                            </div>
+                                   
+                                    <div class="evaluate-count">
+                                        <label>5 sao</label>
+                                        <progress max="@Evaluate.Count" value="@poit5"></progress><label>@Convert.ToDouble(Convert.ToDouble(@poit5 * 100) / Convert.ToDouble(@Evaluate.Count))%</label><br />
+                                        <label>4 sao</label>
+                                        <progress max="@Evaluate.Count" value="@poit4"></progress><label>@Convert.ToDouble(Convert.ToDouble(@poit4 * 100) / Convert.ToDouble(@Evaluate.Count))%</label><br />
+                                        <label>3 sao</label>
+                                        <progress max="@Evaluate.Count" value="@poit3"></progress><label>@Convert.ToDouble(Convert.ToDouble(@poit3 * 100) / Convert.ToDouble(@Evaluate.Count))%</label><br />
+                                        <label>2 sao</label>
+                                        <progress max="@Evaluate.Count" value="@poit2"></progress><label>@Convert.ToDouble(Convert.ToDouble(@poit2 * 100) / Convert.ToDouble(@Evaluate.Count))%</label><br />
+                                        <label>1 sao</label>
+                                        <progress max="@Evaluate.Count" value="@poit1"></progress><label>@Convert.ToDouble(Convert.ToDouble(@poit1 * 100) / Convert.ToDouble(@Evaluate.Count))%</label>
+
+                                    </div>
+
+
+
+
+
+                                }
+
+                                <div>
+                                    @{
+                                        foreach (var i in Evaluate)
+                                        {
+
+                                            if (i.point == 1)
+                                            {<div class="card" style=" margin-top:10px;">
+                                                    <div class="card-body">
+                                                        <label>@i.Custormer.name</label>
+                                                        <div class="icon-card-heading"style="font-size:12px;height:30px">
+                                                            <img src="~/Content/icons1.png" style="width:20px" />
+                                                            <img src="~/Content/icons2.png" style="width:20px" />
+                                                            <img src="~/Content/icons2.png" style="width:20px" />
+                                                            <img src="~/Content/icons2.png" style="width:20px" />
+                                                            <img src="~/Content/icons2.png" style="width:20px" />
+                                                        </div>
+                                                        <label>@i.Message</label><br />
+                                                        <label>@i.VoucherOrderDetail.VoucherOrder.createdate.Value.ToString(string.Format("dd/MM/yyyy"))</label>
+                                                    </div>
+                                                </div>
+                                            }
+                                            else if (i.point == 2)
+                                            {<div class="card" style=" margin-top:10px;">
+                                                    <div class="card-body">
+                                                        <label class="card-heading">@i.Custormer.name</label>
+                                                        <div class="icon-card-heading"style="font-size:12px;height:30px">
+
+                                                            <img src="~/Content/icons1.png" style="width:20px" />
+                                                            <img src="~/Content/icons1.png" style="width:20px" />
+                                                            <img src="~/Content/icons2.png" style="width:20px" />
+                                                            <img src="~/Content/icons2.png" style="width:20px" />
+                                                            <img src="~/Content/icons2.png" style="width:20px" />
+                                                        </div>
+                                                        <label>@i.Message</label><br />
+                                                        <label>@i.VoucherOrderDetail.VoucherOrder.createdate.Value.ToString(string.Format("dd/MM/yyyy"))</label>
+                                                    </div>
+                                                </div>
+                                            }
+                                            else if (i.point == 3)
+                                            {
+                                                <div class="card" style=" margin-top:10px;">
+                                                    <div class="card-body">
+                                                        <label class="card-heading">@i.Custormer.name</label>
+                                                        <div class="icon-card-heading"style="font-size:12px;height:30px">
+
+                                                            <img src="~/Content/icons1.png" style="width:20px" />
+                                                            <img src="~/Content/icons1.png" style="width:20px" />
+                                                            <img src="~/Content/icons1.png" style="width:20px" />
+                                                            <img src="~/Content/icons2.png" style="width:20px" />
+                                                            <img src="~/Content/icons2.png" style="width:20px" />
+                                                        </div>
+                                                        <label>@i.Message</label><br />
+                                                        <label>@i.VoucherOrderDetail.VoucherOrder.createdate.Value.ToString(string.Format("dd/MM/yyyy"))</label>
+                                                    </div>
+                                                </div>
+                                            }
+                                            else if (i.point == 4)
+                                            {
+                                                <div class="card" style=" margin-top:10px;">
+                                                    <div class="card-body">
+                                                        <label class="card-heading">@i.Custormer.name</label>
+                                                        <div class="icon-card-heading"style="font-size:12px;height:30px">
+
+                                                            <img src="~/Content/icons1.png" style="width:20px" />
+                                                            <img src="~/Content/icons1.png" style="width:20px" />
+                                                            <img src="~/Content/icons1.png" style="width:20px" />
+                                                            <img src="~/Content/icons1.png" style="width:20px" />
+                                                            <img src="~/Content/icons2.png" style="width:20px" />
+                                                        </div>
+                                                        <label>@i.Message</label><br />
+                                                        <label>@i.VoucherOrderDetail.VoucherOrder.createdate.Value.ToString(string.Format("dd/MM/yyyy"))</label>
+                                                    </div>
+                                                </div>
+                                            }
+                                            else if (i.point == 5)
+                                            {
+                                                <div class="card" style=" margin-top:10px;">
+                                                    <div class="card-body">
+                                                        <label class="card-heading">@i.Custormer.name</label>
+                                                        <div class="icon-card-heading"style="font-size:12px;height:30px">
+                                                            <img src="~/Content/icons1.png" style="width:20px" />
+                                                            <img src="~/Content/icons1.png" style="width:20px" />
+                                                            <img src="~/Content/icons1.png" style="width:20px" />
+                                                            <img src="~/Content/icons1.png" style="width:20px" />
+                                                            <img src="~/Content/icons1.png" style="width:20px" />
+                                                        </div>
+                                                        <label>@i.Message</label><br />
+                                                        <label>@i.VoucherOrderDetail.VoucherOrder.createdate.Value.ToString(string.Format("dd/MM/yyyy"))</label>
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+
+                                    }
+                                </div>
+
+                        }
+
+                    </div>
+                    </div>
+            </div>
+        </div>
+
+        @*haucode đến*@
+    </div>
+</div>
+
+@section  scripts{
+    <script>
+        let sl = 1;
+        $(document).ready(function () {
+
+
+            $("#minus").click(function () {
+                if (sl > 2) {
+                    sl = sl - 1;
+                    $("#quantity").text(sl);
+                }
+            })
+
+            $("#plus").click(function () {
+
+                sl = sl + 1;
+                $("#quantity").text(sl);
+
+            })
+            $("#addCart").click(function () {
+                let id = window.location.href.split('/').pop();
+                window.location = `/Comestic/AddCart/${id}?quantity=${sl}`
+
+            })
+        })
+
+    </script>
+}

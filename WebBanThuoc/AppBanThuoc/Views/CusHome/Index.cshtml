@@ -1,0 +1,320 @@
+﻿@model  List<Product>
+@{
+    ViewBag.Title = "Index";
+}
+@using AppBanThuoc.Models;
+<div class="home-newhot">
+    <div class="container">
+        <div class="home-newhot-title">MỚI & HOT</div>
+        <div class="home-newhot-banner">
+            <div class="item1">
+                <img src="https://online.vietskin.vn/image/service/DV-BANNER-01.png" alt="banner1">
+            </div>
+            <div class="item2">
+                <img src="https://online.vietskin.vn/image/service/dich-vu-triet-long-vinh-vien.png" alt="banner2">
+            </div>
+            <div class="item3">
+                <img src="https://online.vietskin.vn/image/service/image3-16.png" alt="banner3">
+            </div>
+            <div class="item4">
+                <img src="https://online.vietskin.vn/image/service/dap-mat-na-tot.png" alt="banner4">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="home-banner">
+    <div class="home-banner-content">
+        <div class="title">
+            <h2>
+                KMALL
+                <br />
+                MUA HÀNG TRỰC TUYẾN
+            </h2>
+        </div>
+        <div class="description">
+            <p>Hỏi đáp trực tuyến - Trò chuyện không giới hạn</p>
+        </div>
+        <div class="btn-meetdoctor">
+            <a href="">TRÒ CHUYỆN<i class="fas fa-angle-right"></i></i></i></a>
+        </div>
+    </div>
+</div>
+<div class="home-product-hot">
+    <div class="home-product-hot-container">
+        <div class="home-product-hot-title">
+            Sản phẩm giảm giá
+        </div>
+        <div class="home-product-hot-list">
+            @foreach (var item in Model)
+            {
+                <div class="home-product-hot-item">
+                    <div class="home-product-hot-img">
+                        <img src="@item.Photos.FirstOrDefault().url" alt="">
+                        <div class="home-product-hot-add-to-cart">Thêm vào giỏ hàng</div>
+                    </div>
+                    <div class="home-product-list">
+                        <div class="home-product-hot-name">
+                            @item.name
+                        </div>
+                        <div class="home-product-item-footer">
+                        <div class="home-product-hot-brand">
+                            @item.Category.name
+                        </div>
+                        <div class="home-product-hot-price-list">
+                            <span class="home-product-hot-price-discount">
+                                @item.price.Value.ToString("N0") VNĐ
+                            </span>
+                            <span class="home-product-hot-price">
+                              @item.discount %
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+<div class="home-doctor">
+    <div class="container">
+        <div class="doctor-home-header">
+            <div class="doctor-header-title">
+                <h2>Bác sĩ da liễu hàng đầu</h2>
+            </div>
+            <div class="show-all">
+                <a href="/doctor">Xem tất cả<i class="fas fa-angle-right"></i></a>
+            </div>
+        </div>
+        <div class="doctor-body">
+            <div class="list-doctor">
+                <div class="list-doctor-item">
+                    <div class="doctor-avatar">
+                        <img src="https://media.vietskin.vn/media/2e22b801ff3745f4e519fc020f302e8b75354949_387269522224961_4125017544631255040_o.jpg"
+                             alt="">
+                    </div>
+                    <div class="doctor-info">
+                        <div class="doctor-info-name">
+                            <a href="">PGS.TS.BS Đặng Văn Em</a>
+                        </div>
+                        <div class="doctor-info-desc">
+                            <a href="">Là một bác sĩ - chuyên gia đầu ngành về da liễu tại Việt Nam với hơn...</a>
+                        </div>
+                        <div class="doctor-info-price">
+                            <p>Phí tư vấn: 250000Đ / 7 ngày</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-doctor-item">
+                    <div class="doctor-avatar">
+                        <img src="https://media.vietskin.vn/media/2e22b801ff3745f4e519fc020f302e8b75354949_387269522224961_4125017544631255040_o.jpg"
+                             alt="">
+                    </div>
+                    <div class="doctor-info">
+                        <div class="doctor-info-name">
+                            <a href="">PGS.TS.BS Đặng Văn Em</a>
+                        </div>
+                        <div class="doctor-info-desc">
+                            <a href="">Là một bác sĩ - chuyên gia đầu ngành về da liễu tại Việt Nam với hơn...</a>
+                        </div>
+                        <div class="doctor-info-price">
+                            <p>Phí tư vấn: 250000Đ / 7 ngày</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-doctor-item">
+                    <div class="doctor-avatar">
+                        <img src="https://media.vietskin.vn/media/2e22b801ff3745f4e519fc020f302e8b75354949_387269522224961_4125017544631255040_o.jpg"
+                             alt="">
+                    </div>
+                    <div class="doctor-info">
+                        <div class="doctor-info-name">
+                            <a href="">PGS.TS.BS Đặng Văn Em</a>
+                        </div>
+                        <div class="doctor-info-desc">
+                            <a href="">Là một bác sĩ - chuyên gia đầu ngành về da liễu tại Việt Nam với hơn...</a>
+                        </div>
+                        <div class="doctor-info-price">
+                            <p>Phí tư vấn: 250000Đ / 7 ngày</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-doctor-item">
+                    <div class="doctor-avatar">
+                        <img src="https://media.vietskin.vn/media/2e22b801ff3745f4e519fc020f302e8b75354949_387269522224961_4125017544631255040_o.jpg"
+                             alt="">
+                    </div>
+                    <div class="doctor-info">
+                        <div class="doctor-info-name">
+                            <a href="">PGS.TS.BS Đặng Văn Em</a>
+                        </div>
+                        <div class="doctor-info-desc">
+                            <a href="">Là một bác sĩ - chuyên gia đầu ngành về da liễu tại Việt Nam với hơn...</a>
+                        </div>
+                        <div class="doctor-info-price">
+                            <p>Phí tư vấn: 250000Đ / 7 ngày</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-doctor-item">
+                    <div class="doctor-avatar">
+                        <img src="https://media.vietskin.vn/media/2e22b801ff3745f4e519fc020f302e8b75354949_387269522224961_4125017544631255040_o.jpg"
+                             alt="">
+                    </div>
+                    <div class="doctor-info">
+                        <div class="doctor-info-name">
+                            <a href="">PGS.TS.BS Đặng Văn Em</a>
+                        </div>
+                        <div class="doctor-info-desc">
+                            <a href="">Là một bác sĩ - chuyên gia đầu ngành về da liễu tại Việt Nam với hơn...</a>
+                        </div>
+                        <div class="doctor-info-price">
+                            <p>Phí tư vấn: 250000Đ / 7 ngày</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-doctor-item">
+                    <div class="doctor-avatar">
+                        <img src="https://media.vietskin.vn/media/2e22b801ff3745f4e519fc020f302e8b75354949_387269522224961_4125017544631255040_o.jpg"
+                             alt="">
+                    </div>
+                    <div class="doctor-info">
+                        <div class="doctor-info-name">
+                            <a href="">PGS.TS.BS Đặng Văn Em</a>
+                        </div>
+                        <div class="doctor-info-desc">
+                            <a href="">Là một bác sĩ - chuyên gia đầu ngành về da liễu tại Việt Nam với hơn...</a>
+                        </div>
+                        <div class="doctor-info-price">
+                            <p>Phí tư vấn: 250000Đ / 7 ngày</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="home-cosmetics">
+    <div class="container">
+        <div class="cosmetics-header">
+            <div class="cosmetics-header-title">
+                <h2>Mỹ phẩm</h2>
+            </div>
+            <div class="show-all">
+                <a href="/Comestic">Xem tất cả<i class="fas fa-angle-right"></i></a>
+            </div>
+        </div>
+        <div class="cosmetics-body">
+            <div class="item1">
+                <img src="https://online.vietskin.vn/image/WebBN-02.jpg" alt="">
+            </div>
+            <div class="item2">
+                <img src="https://online.vietskin.vn/image/WebBN-03.jpg" alt="">
+            </div>
+            <div class="item3">
+                <img src="https://online.vietskin.vn/image/WebBN-04.jpg" alt="">
+            </div>
+            <div class="item4">
+                <img src="https://online.vietskin.vn/image/WebBN-05.jpg" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="home-services">
+    <div class="container">
+        <div class="services-header">
+            <div class="services-header-title">
+                <h2>Dịch vụ</h2>
+            </div>
+            <div class="show-all">
+                <a href="/Service">Xem tất cả<i class="fas fa-angle-right"></i></a>
+            </div>
+        </div>
+        <div class="services-body">
+            <div class="item1">
+                <img src="https://online.vietskin.vn/image/service1.png" alt="service1">
+            </div>
+            <div class="item2">
+                <img src="https://online.vietskin.vn/image/service2.png" alt="service2">
+            </div>
+            <div class="item3">
+                <img src="https://online.vietskin.vn/image/service3.png" alt="service3">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="home-drug">
+    <div class="container">
+        <div class="drug-header">
+            <div class="drug-header-title">
+                <h2>Mỹ phẩm</h2>
+            </div>
+            <div class="show-all">
+                <a href="/comestic">Xem tất cả<i class="fas fa-angle-right"></i></a>
+            </div>
+        </div>
+        <div class="drug-body">
+            <div class="item1">
+                <img src="https://online.vietskin.vn/image/WebBN-02.jpg" alt="">
+            </div>
+            <div class="item2">
+                <img src="https://online.vietskin.vn/image/WebBN-03.jpg" alt="">
+            </div>
+            <div class="item3">
+                <img src="https://online.vietskin.vn/image/WebBN-04.jpg" alt="">
+            </div>
+            <div class="item4">
+                <img src="https://online.vietskin.vn/image/WebBN-05.jpg" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="home-feedback">
+    <div class="container">
+        <div class="feedback-header">
+            <div class="feedback-header-title">
+                <h2>Phản hồi của khách hàng</h2>
+            </div>
+            <div class="show-all">
+                <a href="/feedback">Xem tất cả<i class="fas fa-angle-right"></i></a>
+            </div>
+        </div>
+        <div class="feedback-body">
+            <div class="feedback-box">
+                <div class="content">
+                    <p>Ứng dụng rất hay, nhiều bác sĩ nổi tiếng, mình khám cho bé được bác sĩ tư vấn rất kĩ, đơn thuốc điện tử dễ nhìn không lo bị mất</p>
+                    <img src="https://online.vietskin.vn/image/feedback.png" alt="feedback-img">
+                </div>
+                <div class="info-cus">
+                    <div class="info-cus-avatar">
+                        <img src="https://online.vietskin.vn/image/pf1.png" alt="">
+                    </div>
+                    <div class="info-cus-name">
+                        <p>Nguyễn Thị Nga</p>
+                    </div>
+                    <div class="info-cus-job">
+                        Nhân viên văn phòng
+                    </div>
+                </div>
+            </div>
+            <div class="feedback-box">
+                <div class="content">
+                    <p>Ứng dụng rất hay, nhiều bác sĩ nổi tiếng, mình khám cho bé được bác sĩ tư vấn rất kĩ, đơn thuốc điện tử dễ nhìn không lo bị mất</p>
+                    <img src="https://online.vietskin.vn/image/feedback.png" alt="feedback-img">
+                </div>
+                <div class="info-cus">
+                    <div class="info-cus-avatar">
+                        <img src="https://online.vietskin.vn/image/pf1.png" alt="">
+                    </div>
+                    <div class="info-cus-name">
+                        <p>Nguyễn Thị Nga</p>
+                    </div>
+                    <div class="info-cus-job">
+                        Nhân viên văn phòng
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

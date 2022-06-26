@@ -1,0 +1,203 @@
+﻿@model PagedList.IPagedList<Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Customer/Views/Shared/LayoutShare.cshtml";
+    List<Category> categories = (List<Category>)ViewBag.catergory;
+}
+@using PagedList.Mvc;
+@using WebBanThuoc.Models
+
+<div class="services">
+    <div class="container">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="https://online.vietskin.vn/image/slider-cosmetics/slider-top-01.png" alt="slide1" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://online.vietskin.vn/image/slider-cosmetics/slider-top-01.png" alt="slide1" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://online.vietskin.vn/image/slider-cosmetics/slider-top-01.png" alt="slide1" />
+                </div>
+            </div>
+        </div>
+        <div class="services-cart">
+            <div class="cart-btn">
+                <img src="https://online.vietskin.vn/image/slider-cosmetics/cart_home.png" type="button" data-bs-toggle="offcanvas"
+                     data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></img>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
+                     aria-labelledby="offcanvasRightLabel">
+                    <div class="offcanvas-header">
+                        <h5 id="offcanvasRightLabel">GIỎ HÀNG CỦA BẠN</h5>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <div class="cart1">
+                            <div class="list-cart">
+                                <div class="cart-detail">
+                                    <img src="https://media.vietskin.vn/media/5529b24cb04d6353fb4bb73dd9e58592csdacoban.jpg" alt="">
+                                    <div class="cart-detail-name">
+                                        Chăm sóc da
+                                    </div>
+                                    <div class="cart-detail-quantity">4</div>
+                                    <div class="cart-detail-price">3784</div>
+                                    <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
+                                </div>
+                                <div class="cart-detail">
+                                    <img src="https://media.vietskin.vn/media/5529b24cb04d6353fb4bb73dd9e58592csdacoban.jpg" alt="">
+                                    <div class="cart-detail-name">
+                                        Chăm sóc da
+                                    </div>
+                                    <div class="cart-detail-quantity">4</div>
+                                    <div class="cart-detail-price">3784</div>
+                                    <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <img src="https://online.vietskin.vn/image/slider-cosmetics/history_order.png" alt="history_order">
+            </div>
+            <div>
+                <img src="https://online.vietskin.vn/image/slider-cosmetics/message.png" alt="mess">
+            </div>
+        </div>
+        <div class="header-slick-slider">
+            <div>
+                <img class="header-slick-slider-item" src="https://media.vietskin.vn/media/tenamyd.png" alt="slick-slider1" />
+            </div>
+            <div>
+                <img class="header-slick-slider-item" src="https://media.vietskin.vn/media/urea.jpg" alt="slick-slider1" />
+            </div>
+            <div>
+                <img class="header-slick-slider-item" src="https://media.vietskin.vn/media/uriage.png" alt="slick-slider1" />
+            </div>
+            <div>
+                <img class="header-slick-slider-item" src="https://media.vietskin.vn/media/ziaja.png" alt="slick-slider1" />
+            </div>
+            <div>
+                <img class="header-slick-slider-item" src="https://media.vietskin.vn/media/acm.png" alt="slick-slider1" />
+            </div>
+            <div>
+                <img class="header-slick-slider-item" src="https://media.vietskin.vn/media/aderma.png" alt="slick-slider1" />
+            </div>
+            <div>
+                <img class="header-slick-slider-item" src="https://media.vietskin.vn/media/avene.png" alt="slick-slider1" />
+            </div>
+            <div>
+                <img class="header-slick-slider-item" src="https://media.vietskin.vn/media/biocharm.jpg" alt="slick-slider1" />
+            </div>
+        </div>
+    </div>
+</div>
+<div class="services-product">
+    <div class="container">
+        <div class="services-product-title">
+            <h2>TẤT CẢ SẢN PHẨM</h2>
+        </div>
+        <div class="services-product-body">
+            <div class="services-product-body-left">
+                <p>Danh Mục PHÙ HỢP</p>
+                <ul class="service-list">
+                    @foreach (var item in categories)
+                    {
+                        <li class="service-list-item">
+                            <a class="" href="/Customer/Comestic/Index/@item.id">
+                                @item.name
+                            </a>
+
+                        </li>
+                    }
+
+
+                </ul>
+            </div>
+            <div class="services-product-body-right">
+                <div class="services-search">
+                    <div class="sort">
+                        <lable class="sort-services">
+                            Lọc:
+                        </lable>
+
+                    </div>
+                    <div class="search">
+                        @using (Html.BeginForm("Index", "Comestic", FormMethod.Get))
+                        {
+
+
+
+                            <select class="form-select" name="sortOrder">
+                                @{ if (((string)ViewBag.sortOrder).Equals("desc"))
+                                    {
+
+
+                                        <option value="asc">Tăng dần</option>
+                                        <option value="desc" selected>Giảm dần</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="asc" selected="selected">Tăng dần</option>
+                                        <option value="desc">Giảm dần</option>
+                                    }
+                                }
+
+
+                            </select>
+                            <input type="text" name="SearchString" class="form-control" value="@((string)ViewBag.searchValue)" id="" placeholder="Tìm kiếm dịch vụ"> <input type="submit" name="Reset" value="Mặc định" />
+                            @Html.Hidden("page", (object)ViewBag.page)
+                            @Html.Hidden("id", (object)ViewBag.idCategory)
+
+                            @Html.Hidden("size", (object)ViewBag.pageSize)
+
+                        }
+
+                    </div>
+                </div>
+                <div class="list-item">
+                    @foreach (var item in Model)
+                    {<div class="item-detail">
+                            <div class="img-card">
+                                <a href="/Customer/Comestic/Detail/@item.id">
+                                    <img src="@(item.Photos.FirstOrDefault()!=null ? @item.Photos.FirstOrDefault().url:"https://media.vietskin.vn/media/59b1f407d0c5c2f09095eabeaa438869peel-da-tao-song.jpg")"
+                                         alt="">
+                                </a>
+                                <a href="/Customer/Comestic/AddCart/@item.id" class="add-to-cart btn">Thêm vào giỏ hàng</a>
+                            </div>
+                            <div class="item-detail-info">
+                                <div class="item-name">
+                                    @item.name
+                                </div>
+                                <div class="item-price">
+                                    @item.price.Value.ToString("N0") VND
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+
+
+
+                </div>
+                <div class="d-flex ">
+                    <div>
+                        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+                    </div>
+                    <div class="ml-5">
+                        @Html.PagedListPager(Model, page => Url.Action("Index/" + ViewBag.url,
+                    new { page }))
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

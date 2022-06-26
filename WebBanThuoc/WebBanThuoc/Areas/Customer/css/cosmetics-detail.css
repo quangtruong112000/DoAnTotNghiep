@@ -1,0 +1,226 @@
+/* slick-slider */
+.slick-track {
+    display: flex;
+}
+.slick-arrow {
+    width: 10px;
+    height: 10px;
+    border-radius: 100rem;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    transform: translateY(50%);
+    z-index: 10;
+}
+.slick-prev {
+    border: 1px solid gray;
+    background-color: lightgray;
+    right: 80px;
+}
+.slick-next {
+    background-color: lightgray;
+    border: 1px solid gray;
+    right: 0;
+}
+.slick-dots {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    gap: 0 15px;
+    transform: translateY(50%);
+}
+.slick-dots button {
+    font-size: 0;
+    background-color: rgba(0, 0, 255, 0.041);
+    width: 15px;
+    height: 15px;
+    border-radius: 100rem;
+    transition: all 0.2s linear;
+}
+.slick-active button {
+    background-color: blue;
+    width: 45px;
+}
+
+/* details */
+.cosmetics-detail {
+    margin-top: 86px;
+    margin-bottom: 100px;
+}
+.cosmetics-detail-container {
+    max-width: 1170px;
+    margin: 0 auto;
+}
+.cosmetics-detail-link {
+    margin-bottom: 16px;
+    padding-bottom: 40px;
+}
+.cosmetics-detail-link a {
+    text-decoration: none;
+    color: #0f0f0f;
+    font-size: 16px;
+    font-weight: 400;
+}
+.cosmetic-details-body {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    position: relative;
+    padding-bottom: 30px;
+}
+.cosmetic-details-body::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 20px;
+    width: 100%;
+    height: 2px;
+    background-color: gray;
+}
+.cosmetic-details-imgs .img-main {
+    width: 100%;
+    height: 240px;
+    padding-bottom: 10px;
+}
+.cosmetic-details-imgs .img-extra {
+    width: 87px;
+    height: 87px;
+}
+.cosmetic-details-info .cosmetic-details-name {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+.cosmetic-details-info .cosmetic-details-price {
+    color: #1c87f7;
+    font-size: 18px;
+    margin-bottom: 50px;
+    position: relative;
+}
+.cosmetic-details-price::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -30px;
+    width: 100%;
+    height: 2px;
+    background-color: gray;
+}
+.cosmetic-details-info .cosmetic-details-desc-top {
+    line-height: 30px;
+    font-size: 16px;
+    padding-bottom: 30px;
+}
+.cosmetic-details-info .cosmetic-details-add-to-cart {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.cosmetic-details-add-to-cart .minus,
+.cosmetic-details-add-to-cart .plus {
+    text-decoration: none;
+    color: #1c87f7;
+    font-size: 30px;
+    padding: 20px;
+    cursor: pointer;
+}
+.cosmetic-details-add-to-cart .cosmetic-quantity {
+    padding: 20px;
+    font-size: 20px;
+    color: #1c87f7;
+    border: 1px solid #1c87f7;
+    border-radius: 50%;
+}
+.cosmetic-details-add-to-cart .add-to-cart {
+    padding: 20px;
+    font-size: 16px;
+    color: #1c87f7;
+    border: 1px solid #1c87f7;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 700;
+    background-color:rgba(173, 216, 230, 0.253);
+}
+.cosmetic-details-desc {
+    padding-bottom: 30px;
+    position: relative;
+}
+.cosmetic-details-desc:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 5px;
+    width: 100%;
+    height: 2px;
+    background-color: gray;
+}
+.cosmetic-details-desc .cosmetic-details-desc-title {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #222222;
+    font-weight: bold;
+}
+.cosmetic-details-desc .cosmetic-details-desc-bottom {
+    line-height: 30px;
+    font-size: 16px;
+}
+.related-products {
+    margin-top: 5px;
+}
+.related-products .related-products-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #222222;
+    font-weight: bold;
+}
+.product-item {
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.7);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.7);
+    margin: 10px 10px;
+    max-width: 274px;
+    width:100%;
+    border-radius: 5px;
+}
+.product-item:hover .relative-add-to-cart{
+    display: block;
+}
+.relative-img {
+    position: relative;
+}
+.relative-img img {
+    width: 144px;
+    height: 144px;
+    margin: 0 auto;
+}
+.relative-img .relative-add-to-cart{
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: blue;
+    color: white; 
+    display:none;
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    font-weight: 400;
+}
+.relative-name{
+    font-size: 16px;
+    font-weight: 600;
+    color: #171717;
+    padding: 5px;
+}
+.relative-brand{
+    font-size: 16px;
+    font-weight: 300;
+    color: #475677;
+    padding: 5px;
+}
+.relative-price{
+    color: #1c87f7;
+    padding: 5px;
+}
+

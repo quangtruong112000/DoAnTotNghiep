@@ -1,0 +1,385 @@
+﻿
+@model List<forum>
+@{
+    var Custormer = (Custormer)Session["Login"];
+    var cusname = "";
+    if (Custormer != null)
+    {
+        cusname = Custormer.name;
+    }
+
+}
+@using AppBanThuoc.Models;
+<div style="margin: 6%" class="container">
+    @{
+        if (Custormer != null)
+        {
+            <div class="make-question">
+                <div class="make-question-top">
+                    <h1>Đặt câu hỏi với bác sĩ</h1> <span>(Nhận tư vấn miễn phí)</span>
+                </div>
+                <div class="make-question-input">
+                    <div class="make-question-img">
+                        <img src="https://online.vietskin.vn/vietskin.jpg" />
+                    </div>
+                    <textarea class="textposst" placeholder="Bạn có thể đặt câu hỏi cho bác sĩ và cộng đồng da liễu Skin"></textarea><br />
+                </div>
+                <div class="createinput">
+                    <!-- <input type="file" class="form-control" id="Image" name="Image"> -->
+                    <div class="file-upload">
+                        <!-- <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button> -->
+
+                        <div class="image-upload-wrap">
+                            <input type='file' onchange="readURL(this);" accept="image/*" class="file-upload-input" id="Image" name="Image">
+                            <div class="">
+                                <span style="color: white;">Chọn tệp hình ảnh</span>
+                            </div>
+                        </div>
+                        <div class="file-upload-content-text">
+                            <div class="file-upload-content">
+                                <div class="file-upload-content-img">
+                                    <img class="file-upload-image" src="#" alt="your image" />
+                                </div>
+                                <div class="image-title-wrap">
+                                    <span class="image-title">Uploaded Image</span>
+                                    <button type="button" onclick="removeUpload()" class="remove-image">Remove</button>
+                                </div>
+                            </div>
+                            <div class="file-upload-content-btn">
+                                <button type="button" class="btn btn-success post">Tải lên</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    <div class="showmessagepost">
+
+    </div>
+
+    @{
+
+        foreach (var i in Model)
+        {
+            <div class="card" style="margin-top:10px">
+                <div class="card-body">
+                    <div class="cumment">
+                        <div class="cumment-top">
+                            <div class="cumment-img">
+                                <img src="https://anhdep123.com/wp-content/uploads/2021/02/anh-avatar-hai-huoc.jpg" style="width:70px;border-radius:180px" />
+                            </div>
+                            <label>@i.Custormer.name</label><br />
+                        </div>
+                        <span class="cumment-top-content">Nội dung : <label class="cumment-content"> @i.Message</label></span>
+                        @{
+                            if (@i.image != null)
+                            {
+                                <br />
+                                <img src="@i.image" style="width:300px;margin-top:15px;" onclick="modalshowimage('@i.image')" />
+
+                            }
+                        }
+                        <br />
+                        @{
+                            if (Custormer != null)
+                            {
+                                <label class="cumment-answer" onclick="$('.answer_@i.Id').css('display', 'block')">Trả lời</label>
+                            }
+                            else
+                            {
+                                <label class="cumment-answer" onclick="  checkanswer()">Trả lời</label>
+                            }
+                        }
+
+                    </div>
+                </div>
+            </div>
+            foreach (var j in i.Detailforums)
+            {
+                <div class="card" style=" margin-left:50px ;margin-top:10px">
+                    <div class="card-body">
+                        <div class="cumment">
+                            <div class="cumment-top">
+                                <img src="https://anhdep123.com/wp-content/uploads/2021/02/anh-avatar-hai-huoc.jpg" style="width: 70px; border-radius: 180px" />
+                                <label>@j.Custormer.name</label><br />
+                            </div>
+                            <span class="cumment-top-content">Nội dung : <label class="cumment-content"> @j.Message</label> </span>
+                            @{
+                                if (@j.image != null)
+                                {
+                                    <img src="@j.image" style="width:150px" />
+
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div class="answer_@i.Id" style="display:none">
+
+                <div style="width: 725px; margin-left: 50px; margin-top: 10px">
+                    <textarea class="textanswer_@i.Id" placeholder="Mời bạn để lại bình luận..." style="height:160px;width:725px"></textarea><br />
+
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-success" onclick="sendanwser(@i.Id)">đăng</button>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        }
+    }
+
+</div>
+<div class="showimage">
+
+</div>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+
+    function checkanswer() {
+        console.log('aaaaaaa')
+        if ("@Custormer" == '') {
+            $('.header-account-login').trigger('click')
+        }
+    }
+    function modalshowimage(url) {
+        console.log(url)
+        $('.showimage').append('<div class="modal modalshowimage" tabindex="-1" role="dialog" style="display: block; background-color: rgba(0,0,0,0.5)"><div class="d-flex justify-content-end">' +
+            '<i class="fa fa-window-close" aria-hidden="true" style="font-size:80px;margin:20px" onclick="hidemodal()"></i></div> <div class="container">' +
+            '<img style="-webkit-user-select: none;margin: 40px;background-color: hsl(0, 0%, 90%);transition: background-color 300ms; max-height: 1300px" src="' + url + '"></div></div>')
+
+    }
+    function readURL(input) {
+
+        if (input.files && input.files[0]) {
+
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('.image-upload-wrap').hide();
+
+                $('.file-upload-image').attr('src', e.target.result);
+                $('.file-upload-content').css("display","flex");
+
+                $('.image-title').html(input.files[0].name);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+
+        } else {
+            removeUpload();
+        }
+    }
+    function hidemodal() {
+        $('.modalshowimage').remove();
+    }
+    function removeUpload() {
+
+        $('.file-upload-input').val('');
+          $('.file-upload-content').hide();
+        $('.image-upload-wrap').show();
+    }
+    $('.image-upload-wrap').bind('dragover', function () {
+        $('.image-upload-wrap').addClass('image-dropping');
+    });
+    $('.image-upload-wrap').bind('dragleave', function () {
+        $('.image-upload-wrap').removeClass('image-dropping');
+    });
+
+
+    function loadClient() {
+        console.log(123123123)
+        var mess1 = $.connection.sendpost;
+        mess1.client.sendpost = function (message, name, image, id) {
+
+            $('.showmessagepost').after('<div class="card" style="margin-top:10px"><div class="card-body"><div class="cumment"><div class="cumment-top">'+
+'<div class="cumment-img"><img src="https://anhdep123.com/wp-content/uploads/2021/02/anh-avatar-hai-huoc.jpg" style="width:70px;border-radius:180px" />'+
+                '</div><label>' + name+'</label><br /></div><span class="cumment-top-content">Nội dung : <label class="cumment-content">' + message+'</label></span>'+
+                '<br /><img src="' + image + '" style="width:300px;margin-top:15px;" onclick="modalshowimage(`' + image +'`)"/>'+
+                '<br /><label class="cumment-answer" onclick="$(`.answer_'+id+'`).css(`display`,`block`)" >Trả lời</label></div></div></div>' +
+                '<div class="answer_' + id+'" style="display:none">'+
+                '<div style="width: 725px; margin-left: 50px; margin-top: 10px">'+
+                '<textarea class="textanswer_' + id+'" placeholder="Mời bạn để lại bình luận..." style="height:160px;width:725px"></textarea><br />'+
+                '<div class="d-flex justify-content-end"><button type="button" class="btn btn-success" onclick="sendanwser(' + id+')">đăng</button>'+
+                '</div> </div> </div>'
+            )
+            removeUpload();
+
+        }
+        var mess2 = $.connection.sendanswer;
+        mess2.client.sendanswer = function (message, name, image, id) {
+            $('.answer_' + id).before('<div class="card" style=" margin-left:50px ;margin-top:10px"><div class="card-body">'+
+                        '<div class="cumment"><div class="cumment-top">'+
+                        '<img src="https://anhdep123.com/wp-content/uploads/2021/02/anh-avatar-hai-huoc.jpg" style="width: 70px; border-radius: 180px" />'+
+                '<label>' + name + '</label><br /></div><span class="cumment-top-content">Nội dung : <label class="cumment-content"> ' + message+'</label> </span>'+
+                          '<img src="'+image+'" style="width:150px" /></div></div></div>')
+        }
+
+    }
+
+
+    function sendanwser(id) {
+        var sendanswer = $.connection.sendanswer;
+        $.connection.hub.start().done(function () {
+            console.log("ket noi thanh cong");
+            console.log(sendanswer.connection.id);
+if ($(".textanswer_"+id).val().length > 0) {
+
+
+
+            var tn = $(".textanswer_" + id).val()
+            $.ajax({
+                url: '/Forum/saveanswer', type: 'post',
+                data: {
+                    tinnhan: tn,
+                    image: '',
+                    id:id
+                },
+                success: function (data) {
+                    sendanswer.server.sendanswer(tn, "@cusname", '',id);
+                    $(".textanswer_" + id).val('')
+                },
+
+            });
+            @*var input = $('.file-upload-input').get(0);
+            if (input.files && input.files[0]) {
+                var formData = new FormData();
+                formData.append("uploadedFiles", input.files[0]);
+                $.ajax({
+                    data: formData,
+                    type: "POST",
+                    url: '/Forum/UploadFile',
+                    cache: false,
+                    contentType: false,
+
+                    processData: false,
+                    success: function (FileUrl) {
+                        $.ajax({
+                            url: '/Forum/savepost', type: 'post',
+                            data: {
+                                tinnhan: tn,
+                                image: FileUrl
+                            },
+                            success: function (data) {
+                                removeUpload();
+                                $(".textposst").val('')
+                            },
+
+                        });
+
+                    },
+                    error: function (data) {
+                        alert(data.responseText);
+                    }
+                });
+
+            }
+            else {
+                $.ajax({
+                    url: '/Forum/savepost', type: 'post',
+                    data: {
+                        tinnhan: tn,
+                        image: ''
+                    },
+                    success: function (data) {
+                        $(".textposst").val('')
+                    },
+
+                });
+            }*@
+
+
+        }
+        else {
+            alert("Nhập thông tin muốn đăng11111 " + $(".textanswer").val());
+        }
+        });
+
+
+    }
+
+    $(function () {
+        loadClient();
+
+        $(".post").click(function () {
+            var mess = $.connection.sendpost;
+            $.connection.hub.start().done(function () {
+                console.log("ket noi thanh cong");
+                console.log(mess.connection.id);
+
+
+            if ($(".textposst").val().length > 0) {
+                var tn = $(".textposst").val()
+                var input = $('.file-upload-input').get(0);
+                if (input.files && input.files[0]) {
+                    var formData = new FormData();
+                    formData.append("uploadedFiles", input.files[0]);
+                    $.ajax({
+                        data: formData,
+                        type: "POST",
+                        url: '/Forum/UploadFile',
+                        cache: false,
+                        contentType: false,
+
+                        processData: false,
+                        success: function (FileUrl) {
+                            $.ajax({
+                                url: '/Forum/savepost', type: 'post',
+                                data: {
+                                    tinnhan: tn,
+                                    image: FileUrl
+                                },
+                                success: function (data) {
+
+                                    mess.server.sendposts(tn, "@cusname", FileUrl, data);
+                                    removeUpload();
+                                    $(".textposst").val('')
+                                },
+
+                            });
+
+                        },
+                        error: function (data) {
+                            alert(data.responseText);
+                        }
+                    });
+
+                }
+                else {
+                    $.ajax({
+                        url: '/Forum/savepost', type: 'post',
+                        data: {
+                            tinnhan: tn,
+                            image:''
+                        },
+                        success: function (data) {
+                            mess.server.sendposts(tn, "@cusname", "",data);
+                            $(".textposst").val('')
+                        },
+
+                    });
+                }
+
+
+            }
+            else {
+                alert("Nhập thông tin muốn đăng ");
+                }
+
+
+            });
+        })
+    });
+
+</script>
+
+

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31911.196
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBanThuoc", "WebBanThuoc\WebBanThuoc.csproj", "{A8A5BE66-4FAF-4E93-B10C-D2803DE78247}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppBanThuoc", "AppBanThuoc\AppBanThuoc.csproj", "{4F33084B-5B44-41AC-8644-C76FE150CA46}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A8A5BE66-4FAF-4E93-B10C-D2803DE78247}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8A5BE66-4FAF-4E93-B10C-D2803DE78247}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8A5BE66-4FAF-4E93-B10C-D2803DE78247}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8A5BE66-4FAF-4E93-B10C-D2803DE78247}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F33084B-5B44-41AC-8644-C76FE150CA46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F33084B-5B44-41AC-8644-C76FE150CA46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F33084B-5B44-41AC-8644-C76FE150CA46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F33084B-5B44-41AC-8644-C76FE150CA46}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {69D2F6F3-6ED8-4532-BE24-CF86DEC0940F}
+	EndGlobalSection
+EndGlobal

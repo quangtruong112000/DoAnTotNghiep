@@ -1,0 +1,68 @@
+﻿@model List<Cart>
+@using AppBanThuoc.Models;
+<div class="cart-panel">
+    <div class="cart-btn">
+        <img src="https://online.vietskin.vn/image/slider-cosmetics/cart_home.png" type="button" data-bs-toggle="offcanvas"
+             data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></img>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
+             aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+                <h5 id="offcanvasRightLabel">GIỎ HÀNG CỦA BẠN</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                @{ if (Model.Count > 0)
+                    {
+                        <div class="total-money">
+                            <h3>
+                                TỔNG ĐƠN HÀNG
+                            </h3>
+                            <span>
+                                @Model.Sum(x => x.intomoney).Value.ToString("N0") VNĐ
+                            </span>
+                        </div>
+                        <div class="card">
+                            <a href="/Comestic/ListOrder" class="btn btn-outline-primary"> Đặt Hàng</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <h4>Chưa có sản phẩm</h4>
+                    }
+                }
+                @foreach (var item in Model)
+                {
+                    <div class="cart1">
+                        <div class="list-cart">
+                            <div class="cart-detail d-flex justify-justify-content-around align-items-center">
+                                <div class="cart-detail-img">
+                                    <img src="@item.Product.Photos.FirstOrDefault().url" class="rounded" alt="...">
+                                </div>
+
+                                <div class="flex-layout2">
+                                    <p>
+                                        @item.Product.name
+                                    </p>
+                                    <p>    @item.Product.price.Value.ToString("N0") VNĐ </p>
+
+                                    <p> Số Lượng <button class="text-primary" style="border:none">  <i class="bi bi-dash-lg"></i></button>   <span class="border border-1 rounded-circle p-2 ">@item.quantity</span>  <button class="text-primary" style="border:none">  <i class="bi bi-plus"></i> </button>    </p>
+                                </div>
+                                <div>
+                                    <a href="/Comestic/DeleteCart/@item.id" class="text-danger"><i class="fas fa-trash-alt font-icon-delete"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+    <div class="cart-btn">
+        <img src="https://online.vietskin.vn/image/slider-cosmetics/history_order.png" alt="history_order">
+    </div>
+    <div class="cart-btn">
+        <img src="https://online.vietskin.vn/image/slider-cosmetics/message.png" alt="mess">
+    </div>
+</div>

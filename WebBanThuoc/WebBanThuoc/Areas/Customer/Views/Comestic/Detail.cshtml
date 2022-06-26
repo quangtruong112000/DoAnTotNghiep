@@ -1,0 +1,84 @@
+﻿@model Product
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/Customer/Views/Shared/LayoutShare.cshtml";
+}
+@using WebBanThuoc.Models
+
+<div class="cosmetics-detail">
+    <div class="cosmetics-detail-container">
+        <div class="cosmetics-detail-link">
+            <a href="">Home</a>
+            <a href="">/ Lysaskin</a>
+            <a href="">/ atolys gel - gel tam duong am danh cho benh nhan viem da co dia</a>
+        </div>
+        <div class="cosmetic-details-body">
+            <div class="cosmetic-details-imgs">
+
+                <img src="@Model.Photos.FirstOrDefault().url" alt=""
+                     class="img-main">
+                @foreach (var item in Model.Photos)
+                {
+                    <img src="@item.url" alt=""
+                         class="img-extra">
+                }
+
+            </div>
+            <div class="cosmetic-details-info ml-2">
+                <div class="cosmetic-details-name">
+                    @Model.name
+                </div>
+                <div class="cosmetic-details-price">
+                    @Model.price.Value.ToString("N0")
+                </div>
+                <div class="cosmetic-details-desc-top">
+                   @Html.Raw(Model.description)
+                </div>
+                <div class="cosmetic-details-add-to-cart">
+                    <a class="minus">-</a>
+                    <span class="cosmetic-quantity">1</span>
+                    <a class="plus">+</a>
+                    <button class="add-to-cart">
+                        Thêm vào giỏ hàng
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="cosmetic-details-desc">
+            <div class="cosmetic-details-desc-title">
+                Thông tin chi tiết sản phẩm
+            </div>
+            <div class="cosmetic-details-desc-bottom">
+                @Html.Raw(Model.description)
+            </div>
+        </div>
+        <div class="related-products">
+            <div class="related-products-title">
+                Các sản phẩm liên quan
+            </div>
+            <div class="relative-product-list">
+                @foreach (var item in Model.Category.Products)
+                {
+                    <div class="product-item">
+                        <div class="relative-img">
+                            <img src="@item.Photos.FirstOrDefault().url" alt="">
+                            <div class="relative-add-to-cart">Thêm vào giỏ hàng</div>
+                        </div>
+                        <div class="relative-name">
+                          @item.name
+                        </div>
+                        <div class="relative-brand">
+                            @item.product_brand
+                        </div>
+                        <div class="relative-price">
+                              @item.price.Value.ToString("N0")
+                        </div>
+                    </div>
+                }
+
+             
+            </div>
+        </div>
+    </div>
+</div>
+
